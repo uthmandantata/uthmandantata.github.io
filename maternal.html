@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EXCEL EDA</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+  </head>
+
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="maternal.html" class="logo">Maternal Health Risk</a>
+      </header>
+
+      <!-- Nav -->
+      <nav id="nav">
+        <ul class="links">
+          <li class="active"><a href="index.html">Back</a></li>
+        </ul>
+        <ul class="icons">
+          <li>
+            <a href="#" class="icon brands fa-linkedin"
+              ><span class="label">Linkedin</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="icon brands fa-github"
+              ><span class="label">GitHub</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main -->
+      <div id="main">
+        <!-- Post -->
+        <section class="post">
+          <header class="major">
+            <h1>
+              Maternal Health Risk <br />
+              Documentation
+            </h1>
+          </header>
+
+          <p>
+            Data source: kaggle <br />
+            <a
+              href="https://www.kaggle.com/datasets/pyuxbhatt/maternal-health-risk"
+              >https://www.kaggle.com/datasets/pyuxbhatt/maternal-health-risk</a
+            >
+          </p>
+          <div class="col-6 col-12-small">
+            <h3>About Data Set:</h3>
+            <p>
+              This is a data set that shows some of the factors that influence
+              how a pregnancy can end up being high risk.
+            </p>
+          </div>
+          This project is divided into three parts.
+          <li>Cleaning Process</li>
+          <li>Data Exploration</li>
+          <li>Visualization</li>
+          <br />
+          <div class="col-6 col-12-small">
+            <h2>Cleaning Process</h2>
+            <b> Goal : Make Data set more understandable for Analysis </b>
+            I took this
+
+            <img class="image fit" src="images/dataset.png" alt="" />
+
+            I added a little bit of context to the original so that it is more
+            readable
+
+            <li>
+              By context, I mean I added these columns. <br />
+              <div style="padding-left: 100px">
+                a. Age Bracket(Adolescent: below 19, Adult : between 19 and 40,
+                Old: above 40). <br />
+                Code Used: <br />
+                <code> =IF([@BodyTemp]>99.3,"Fever","Normal") </code
+                ><br /><br />
+                b. Temp (Fever: above 99.3 F , Normal: below 99,3 F) <br />
+                Code Used: <br />
+                <code>
+                  =IF([@Age]<19,"Adolescent",IF(AND([@Age]>=19,[@Age]<=40),"Adult",IF([@Age]>40,"Old")))
+                </code>
+                and <br /><br />
+                c. BP (Stage 1 hypertension is a systolic pressure ranging from
+                below 130 to 139 mm Hg or a diastolic pressure ranging from 80
+                to 89 mm Hg. Stage 2 hypertension. More-severe hypertension,
+                stage 2 hypertension is a systolic pressure of 140 mm Hg or
+                higher or a diastolic pressure of 90 mm Hg or higher. and Normal
+                is a systolic pressure below or 120 mm Hg or a diastolic
+                pressure below 80 mm Hg.) <br />
+                Code Used: <br />
+                <code>
+                  =IF(OR(AND([@SystolicBP]>=120,[@SystolicBP]<=19),[@DiastolicBP]>[@DiastolicBP]),"Elevated
+                  blood
+                  pressure",IF(OR(AND([@SystolicBP]>=130,[@SystolicBP]<140),AND([@DiastolicBP]>=80,[@DiastolicBP]<90)),"STAGE
+                  1
+                  Hypertension",IF(OR([@SystolicBP]>=140,[@DiastolicBP]>=90),"STAGE
+                  2
+                  Hypertension",IF(OR(AND([@SystolicBP]>=130,[@SystolicBP]<140),AND([@DiastolicBP]>=80,[@DiastolicBP]<90)),"STAGE
+                  1
+                  Hypertension",IF(OR([@SystolicBP]>=180,[@DiastolicBP]>120),"Hypertension
+                  Crisis","Normal"))))) </code
+                ><br /><br />
+              </div>
+              <img class="image fit" src="images/cleaned.png" alt="" />
+              Then I transformed it into a table
+              <a href="shorthand.html">(ctrl T)</a>
+              <img class="image fit" src="images/clean_data.png" alt="" />
+            </li>
+            <br />
+          </div>
+          <div class="col-6 col-12-small">
+            <h2>Data Exploration</h2>
+            <b> Goal : Find the correlation between the columns. </b>
+            <br /><br />
+            Looking at the data set, not every column has an influence on the
+            Risk Level.
+            <br />
+
+            For example, Heart Rate is Relatively normal throughout the data
+            set. Blood glucose also. <br />
+
+            That leaves me with Age,Age Bracket,
+            SystolicBp,DiastolicBP,BodyTemp,Temp and BP.
+            <br />
+            <br />
+            Since Age Bracket was created to categorize Age, I remove age. Also
+            Temp from BodyTemp, I removed BodyTemp. <br />
+            BP was created to make analyzing SystolicBp,DiastolicBP easier.
+            <br />
+            I created pivot tables
+            <a href="shorthand.html">(alt H N V)</a> based on two of the factors
+            I had remaining(Temp and BP)<br />
+            <br />
+            <h6>Temp</h6>
+            <img class="image fit" src="images/temp.png" alt="" />
+
+            Fields used : Risk Level and Temp <br />
+            From the image above, a larger amount of women with normal body
+            temperature have the most risk. <br />
+            This may be due to other factors not being considered, like age.I
+            talk about this at the <a href="#visualization">Next Section</a>
+            <br /><br />
+            <h6>BP</h6>
+            <img class="image fit" src="images/bp.png" alt="" />
+
+            Fields used : Risk Level and BP <br />
+            This shows the women most liable to hava a high risk pregnancy are
+            women in Stage 2 Hypertension
+          </div>
+          <br /><br />
+          <div class="col-6 col-12-small" id="visualization">
+            <h2>Visualization</h2>
+            <b> Goal : Create a Dashboard and Story Telling </b>
+            <br /><br />
+            I created a dashboard to visualizing answers gotten from data
+            exploration. This makes storytelling more engaging. <br />
+
+            <br />I copied the two charts to a seperate sheet and Inserted a
+            slicer with Age Brackets <a href="shorthand.html">(alt N SF)</a>.
+            This filters the two charts based on the Age Brackets
+            <br />
+            <img class="image fit" src="images/dash.png" alt="" />
+            <br />
+            <br />
+            Adolescent (Below 19) <br />
+            <img class="image fit" src="images/adol.png" alt="" />
+            In the image above, adolescents are more likely to have a high risk
+            with fever(above 99.3 F). While BP is not a huge factor <br />
+            Most of the mothers in this category has the lowest chance of being
+            high risk.
+            <br />
+            <b>Adult(20 - 40)</b>
+            <img class="image fit" src="images/adult.png" alt="" />
+            In the image above, adults are more likely to have a high risk with
+            Stage 2 Hypertension(High blood pressure). While Body Temperature is
+            not a huge factor <br />
+            Most of the mothers in this category has the highest chance of being
+            low risk. <br />
+            <b>Old(Above 40)</b>
+            <img class="image fit" src="images/old.png" alt="" />
+            In the image above, adults are more likely to have a high risk with
+            High blood pressure than a fever(above 99.3F) <br />
+            Most of the mothers in this category has the highest chance of being
+            high risk. <br />
+            <br />
+            <br />
+            <b>Key Notes</b> <br />1. High blood pressure during pregnancy can
+            affect the development of the placenta, causing the nutrient and
+            oxygen supply to the baby to be limited. This can lead to an early
+            delivery, low birth weight, placental separation (abruption) and
+            other complications for the baby. High blood pressure affects a
+            mother depending on her age. The older she is, the more high blood
+            pressure makes pregnancies high risk <br />2. Fever raises your
+            baby's risk of neural tube defects (NTDs) such as spina bifida,
+            anencephaly, and encephalocele. This is more evident in women under
+            the age of 19
+
+            <br />
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <section class="split contact">
+          <section>
+            <h3>Email</h3>
+            <p><a href="#">uthmandantata8@gmail.com</a></p>
+          </section>
+          <section>
+            <h3>Social</h3>
+            <ul class="icons alt">
+              <li>
+                <a href="#" class="icon brands alt fa-linkedin"
+                  ><span class="label">Linkedin</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="icon brands alt fa-github"
+                  ><span class="label">GitHub</span></a
+                >
+              </li>
+            </ul>
+          </section>
+        </section>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
