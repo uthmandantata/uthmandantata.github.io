@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EXCEL EDA</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="../assets/css/noscript.css"
+    /></noscript>
+  </head>
+
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="data.html" class="logo">Data Science Jobs</a>
+      </header>
+
+      <!-- Nav -->
+      <nav id="nav">
+        <ul class="links">
+          <li class="active"><a href="excel.html">Back</a></li>
+        </ul>
+        <ul class="icons">
+          <li>
+            <a
+              href="https://www.linkedin.com/in/uthman-dantata-1617571bb/"
+              class="icon brands fa-linkedin"
+              ><span class="label">Linkedin</span></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://github.com/uthmandantata"
+              class="icon brands fa-github"
+              ><span class="label">GitHub</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main -->
+      <div id="main">
+        <!-- Post -->
+        <section class="post">
+          <header class="major">
+            <h1>
+              Data Science Jobs<br />
+              Documentation
+            </h1>
+          </header>
+          Github repository<br />
+          <p>
+            <a href="https://github.com/uthmandantata/excel_projects"
+              >https://github.com/uthmandantata/excel_projects</a
+            >
+          </p>
+
+          Data source: kaggle <br />
+          <p>
+            <a
+              href="https://www.kaggle.com/datasets/nikhilbhathi/data-scientist-salary-us-glassdoor"
+              >https://www.kaggle.com/datasets/nikhilbhathi/data-scientist-salary-us-glassdoor</a
+            >
+          </p>
+          <div class="col-6 col-12-small">
+            <h3>
+              TODO - talk about dataset(source, what it contains, how it will be
+              useful)
+            </h3>
+            <li>SOURCE : Kaggle</li>
+            <li>Information about Data Scientist Jobs</li>
+            <li>Can be useful to know what to learn to get a specific job</li>
+            <li>Can be useful to know which company best fits your skillset</li>
+          </div>
+          <br /><br />
+          <div class="col-6 col-12-small">
+            <h2>Data Preperations</h2>
+            <li>Remove duplicates <a href="../shortcut.html">(alt A M)</a></li>
+            <li>
+              Transform dataset into a table
+              <a href="../shortcut.html">(ctrl T)</a>
+            </li>
+            <li>
+              Rename table fields by columns
+              <a href="../shortcut.html">(alt M C )</a>
+            </li>
+          </div>
+          <br /><br />
+
+          <div class="col-6 col-12-small">
+            <h2>Exploratory Analysis</h2>
+            <b> Columns we'll anlyze:</b>
+            <li>All columns with Skills</li>
+            <li>Company Name</li>
+            <li>Salary Estimates</li>
+            <li>Avg Salary(K)</li>
+            <li>Degree</li>
+            <li>seniority_by_title</li>
+            <br />
+            <br />
+            <div>
+              <h2>Questions Asked</h2>
+              <li>Job title with highest frequency</li>
+              <li>Job title with lowest frequency</li>
+              <li>TOP 3 most requierd skills</li>
+              <li>Is Google data analytics certificate that important?</li>
+              <li>Jnr average Salary</li>
+              <li>What company has the highest frequency</li>
+              <li>What company hires the most jnr data analysts</li>
+              <li>
+                Is sql more important than python for snr data scientists?
+              </li>
+              <li>
+                What is the most required skill based on each job title. Ps use
+                the simplified
+              </li>
+            </div>
+
+            <br />
+            <br />
+            <div>
+              <h2>Answers</h2>
+              <li>Job title with highest frequency</li>
+
+              <div style="padding-left: 50px">
+                Ans: DATA SCIENTIST <br />
+                Process used: Pivot Table
+                <a href="shorthand.html">(alt H N V)</a> <br />
+                Fields used: job_title_sim
+
+                <img class="image fit" src="../images/pvt1.png" alt="" />
+              </div>
+              <br />
+
+              <li>Job title with lowest frequency</li>
+              <div style="padding-left: 50px">
+                Ans: DATA MODELER & DIRECTOR<br />
+                Process used: Pivot Table
+                <a href="shorthand.html">(alt H N V)</a> <br />
+                Fields used: job_title_sim
+
+                <img class="image fit" src="../images/pvt1.png" alt="" />
+              </div>
+              <br />
+              <li>TOP 3 most requierd skills</li>
+              <div style="padding-left: 50px">
+                Ans: Python , excel & sql
+                <p>Code used: <code>=COUNTIF(Python,"Required")</code></p>
+              </div>
+
+              <li>Is Google data analytics certificate that important?</li>
+              <div style="padding-left: 50px">
+                Ans: Python , excel & sql
+                <p>
+                  Code used: 
+                  <code>=COUNTIF(google_an,"Required")</code> to get the number of
+                  jobs that require google data analytics certificate & <code>=COUNTA(job_title_sim)</code> to get the number of jobs
+                </p>
+              </div>
+
+              <li>Jnr average Salary</li>
+              <div style="padding-left: 50px">
+                Ans: 71K
+                <p>
+                  Code used:
+                 <pre>
+                     <code>
+                        =AVERAGEIF(seniority_by_title,"jr",Avg_Salary_K)&"K"
+                     </code>
+                 </pre>
+                </p>
+
+              <br />
+              <li>What company has the highest frequency</li>
+              <div style="padding-left: 50px">
+                Ans: MassMutual , Reynolds American & Takeda Pharmaceuticals
+                <p>Process used: Pivot Table</p>
+                <a href="shorthand.html">(alt H N V)</a> <br />
+                Fields used: Company Name
+
+                <img class="image fit" src="../images/pvt_cmp.png" alt="" />
+              </div>
+              <li>What company hires the most jnr data analysts</li>
+              <div style="padding-left: 50px">
+                Ans: webfx.com , MITRE & The HSC Health Care System
+                <p>Process used: Pivot Table</p>
+                <a href="shorthand.html">(alt H N V)</a> <br />
+                Fields used: Company Name & seniority_by_title
+
+                <img class="image fit" src="../images/pvt_jr.png" alt="" />
+              </div>
+              <li>
+                Is sql more important than python for snr data scientists?
+              </li>
+              Ans: Python is more important
+              <p>Code used: =IF(COUNTIFS(seniority_by_title,"sr",Python,"required")>COUNTIFS <br>
+                (seniority_by_title,"sr",sql,"required"),"Python is more important","Sql is more important" )</p>
+              <li>
+                What is the most required skill based on each job title. Ps use
+                the simplified
+              </li>
+              <div style="padding-left: 50px">
+                Ans: <img class="image fit" src="../images/table.png" style="height:400px; width:400px " />
+                <p>Code used:</p>
+                <pre >
+                    <code >
+                        <div
+                        style="margin-left:-300px">
+                        =IF(COUNTIFS(Table1[job_title_sim],B66,Table1[google_an],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[mongo],"Required"),"Google",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[mongo],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[flink],"Required"),"Mongo",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[flink],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[bi],"Required"),"Flink",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[bi],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[tableau],"Required"),"BI",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[tableau],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[hadoop],"Required"),"tableau",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[hadoop],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[tensor],"Required"),"hadoop",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[tensor],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[scikit],"Required"),"tensor",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[scikit],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[pytorch],"Required"),"scikit",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[pytorch],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[keras],"Required"),"pytorch",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[keras],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[sas],"Required"),"keras",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[sas],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[sql],"Required"),"sras",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[sql],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[excel],"Required"),"sql",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[excel],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[aws],"Required"),"excel",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[aws],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[spark],"Required"),"aws",
+                        IF(COUNTIFS(Table1[job_title_sim],B66,Table1[spark],"Required")>COUNTIFS(Table1[job_title_sim],B66,Table1[Python],"Required"),"spark","Python")))))))))))))))
+                      </div>  
+                    </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+          <p>
+        </p>
+
+          <br /><br />
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <section class="split contact">
+          <section>
+            <h3>Email</h3>
+            <p>uthmandantata8@gmail.com</p>
+          </section>
+          <section>
+            <h3>Social</h3>
+            <ul class="icons alt">
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/uthman-dantata-1617571bb/"
+                  class="icon brands alt fa-linkedin"
+                  ><span class="label">Linkedin</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/uthmandantata"
+                  class="icon brands alt fa-github"
+                  ><span class="label">GitHub</span></a
+                >
+              </li>
+            </ul>
+          </section>
+        </section>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
